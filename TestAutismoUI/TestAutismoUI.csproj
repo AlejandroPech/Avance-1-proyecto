@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestAutismo.Models\TestAutismo.Models.csproj" />
+    <ProjectReference Include="..\TestAutismo.Services\TestAutismo.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Fotografias\" />
+  </ItemGroup>
+
+</Project>

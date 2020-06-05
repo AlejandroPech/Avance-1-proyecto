@@ -1,0 +1,57 @@
+﻿@page
+@model TestAutismoUI.Pages.Containers.RegistroNinioModel
+@{
+    ViewData["Title"] = "RegistroNinio";
+}
+
+<h1 class="text-center">Registro de Niños</h1>
+<div class="card mb-3" style="max-width: 1080px;">
+    
+        <div class="card mb-3" style="max-width: 1080px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="~/Fotografias/nofoto.jpg" class="card-img" alt="..." asp-append-version="true" style="width:350px;height:400px">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.ApellidosNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.ApellidosNinio" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.Nacionalidad" class="col-md-3"></label>
+                            <select asp-for="Ninio.Nacionalidad" class="custom-select col-md-8" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CurpNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CurpNinio" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.FechaNacimientoN" class="col-md-3"></label>
+                            <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.NombreCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.NombreCentro" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.DireccionCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.ClaveCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-9"></div>
+                            <a class="btn btn-success m-1" asp-page="/Containers/Ninios">Registrar Niño</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

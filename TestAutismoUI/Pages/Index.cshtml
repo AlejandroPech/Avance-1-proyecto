@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    .btn-success{
+        width:160px;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+
+
+</div>
+<br />
+<div class="container-fluid">
+    <form class="mt-5" method="post">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <label asp-for="Tutors.Cuenta.CorreoElectronico"></label>
+                <input type="text" role="textbox" class="form-control form-text form-control" asp-for="@Model.Tutors.Cuenta.CorreoElectronico" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+    <form class="mt-5" method="post">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <label asp-for="Tutors.Contraseña"></label>
+                <input type="text" role="textbox" class="form-control form-text form-control" asp-for="@Model.Tutors.Contraseña" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+    <br />
+    <div class="text-center">
+        <a asp-page="/Containers/RegistroTutor" class="text-center">Ir a Registrarme</a>
+    </div>
+    <div class="row">
+        <div class="col-md-5"></div>   
+        <div class="col-md-2">            
+            <a class="btn btn-success m-1" asp-page="/Containers/Ninios" >Iniciar Secion</a>
+        </div>                    
+        <div class="col-md-5"></div>
+    </div>
+    
+</div>
