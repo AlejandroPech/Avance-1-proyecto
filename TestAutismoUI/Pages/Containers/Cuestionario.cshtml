@@ -2,50 +2,96 @@
 @model TestAutismoUI.Pages.Containers.CuestionarioModel
 @{
     ViewData["Title"] = "Cuestionario";
+    int numero = Model._pregunta.PreguntaId + 1;
+    int numero2 = numero - 2;
+    int numero3 = 1;
+
 }
-    <style>
-        .button {
-            width: 125px;
-            height: auto;
-        }
-    </style>
+<style>
+    .button {
+        width: 110px;
+        height: auto;
+    }
+    .boton {
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        border: 1px solid red;
+    }
+    .card{
+        height:250px;
+    }
+</style>
+
+
 <h1 class="text-center">Cuestionario</h1>
+<div class="form-row">   
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col" class="col-sm-10">Preguntas</th>
-            <th scope="col" class="col-sm-1">Si</th>
-            <th scope="col" class="col-sm-1">No</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model._preguntas)
-        {
-            <tr>                
-                <td>@Html.DisplayFor(x=>item.PreguntaRealizada)</td>                
-                <td>
-                    <div class="btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-success active">
-                            <input type="checkbox" checked/>
+        <div class="card form-group col-md-12">
+            <div class="card-header text-center">
+                Pregunta
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    @Model._pregunta.PreguntaRealizada
+                    <p />
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="Si" name="Tipo" onclick="fun()">
+                            Si
+                            <span></span>
                         </label>
-                    </div>
-                </td>
-                <td>
-                    <div class="btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-success active">
-                            <input type="checkbox" checked>
+                        <br />
+                        <label>
+                            <input type="radio" id="No" name="Tipo">
+                            No
+                            <span></span>
                         </label>
-                    </div>
-                </td>                
-            </tr>
-        }
-    </tbody>
-</table>
 
-<div class="form-group row">
-    <div class="col-md-9"></div>
-    <a class="btn btn-secondary m-1 button" asp-page="/Containers/Ninios">Guardar</a>
-    <a class="btn btn-success m-1 button" asp-page="/Containers/Resultados">Terminar</a>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+
 </div>
+
+
+
+
+    <script>
+        function fun() {
+            var type = document.getElementsByName("Tipo");
+            if (type[0].checked) {
+
+            }
+        }
+    </script>
+
+    <div class="form-group row">
+        @if (Model._pregunta.PreguntaId<= 1)
+        {
+            <div class="col-md-8"></div>
+            <a class="btn btn-secondary m-1 button" asp-page="/Containers/Ninios" asp-route-Id="@numero3">Guardar</a>
+            <a type="submit" class="btn btn-success button m-1" asp-page="/Containers/Cuestionario" asp-route-id="@numero">Siguiente</a>
+
+        }
+        else if (Model._pregunta.PreguntaId >= 23)
+        {
+            <div class="col-md-8"></div>
+            <a class="btn btn-secondary m-1 button" asp-page="/Containers/Ninios" asp-route-Id="@numero3">Guardar</a>
+            <a type="submit" class="btn btn-success button m-1" asp-page="/Containers/Cuestionario" asp-route-id="@numero2">Anterior</a>
+            <a class="btn btn-primary m-1 button" asp-page="/Containers/Resultados">Terminar</a>
+
+        }
+        else
+        {
+            <div class="col-md-8"></div>
+            <a class="btn btn-secondary m-1 button" asp-page="/Containers/Ninios" asp-route-Id="@numero3">Guardar</a>
+            <a type="submit" class="btn btn-success button m-1" asp-page="/Containers/Cuestionario" asp-route-id="@numero2">Anterior</a>
+            <a type="submit" class="btn btn-success button m-1" asp-page="/Containers/Cuestionario" asp-route-id="@numero">Siguiente</a>
+
+        }
+    </div>
+
+
+

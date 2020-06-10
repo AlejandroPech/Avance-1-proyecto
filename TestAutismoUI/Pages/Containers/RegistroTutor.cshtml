@@ -14,37 +14,40 @@
             <blockquote class="blockquote mb-0">
                 <div class="form-group row">
                     <label asp-for="NewTutor.NombreTutor" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.NombreTutor" class="col-md-9" />
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.NombreTutor" class="form-control col-md-9" />
                 </div>
                 <div class="form-group row">
                     <label asp-for="NewTutor.ApellidosTutor" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.ApellidosTutor" class="col-md-9" />
-                </div>
-                <div class="form-group row">
-                    <label asp-for="NewTutor.NacionalidadT" class="col-md-2"></label>
-                    <select asp-for="NewTutor.NacionalidadT" class="custom-select col-md-3" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
-                    <div class="col-md-1"></div>
-                    <label asp-for="NewTutor.DireccionT" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.DireccionT" class="col-md-3" />
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.ApellidosTutor" class="form-control col-md-9" />
                 </div>
                 <div class="form-group row">
                     <label asp-for="NewTutor.CurpTutor" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.CurpTutor" class="col-md-3" />
-                    <div class="col-md-1"></div>
-                    <label asp-for="NewTutor.FechaNacimientoT" class="col-md-2"></label>
-                    <input type="date" asp-for="@Model.NewTutor.FechaNacimientoT" />
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.CurpTutor" class="form-control col-md-6" />
                 </div>
                 <div class="form-group row">
+                    <label asp-for="NewTutor.DireccionT" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.DireccionT" class="form-control col-md-6" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="NewTutor.NacionalidadT" class="col-md-2"></label>
+                    <select asp-for="NewTutor.NacionalidadT" class="form-control col-md-3" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
+                    <div class="col-md-1"></div>
+                    <label asp-for="NewTutor.FechaNacimientoT" class="col-md-2"></label>
+                    <input type="date" asp-for="@Model.NewTutor.FechaNacimientoT" class="form-control col-md-3" />
+                </div>
+                
+                <div class="form-group row">
                     <label asp-for="NewTutor.Cuenta.CorreoElectronico" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.Cuenta.CorreoElectronico" class="col-md-9" />
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.Cuenta.CorreoElectronico" class="form-control col-md-9" />
                 </div>
                 <div class="form-group row">
                     <label asp-for="NewTutor.Contraseña" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.NewTutor.Contraseña" class="col-md-3" />
+                    <input type="text" role="textbox" asp-for="@Model.NewTutor.Contraseña" class="form-control col-md-3" />
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10"></div>
-                    <a class="btn btn-success m-1" asp-page="/Containers/RegistroNinio">Registrarse</a>
+                    
+                    <button class="btn btn-success m-1" type="submit">Registrarse</button>
                 </div>
             </blockquote>
         </div>

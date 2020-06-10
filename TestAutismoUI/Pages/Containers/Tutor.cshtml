@@ -1,0 +1,57 @@
+﻿@page
+@model TestAutismoUI.Pages.Containers.TutorModel
+@{
+    ViewData["Title"] = "Tutor";
+}
+<h1 class="text-center">Tutor</h1>
+<form class="mt-3" method="post">
+    <div class="card">
+        <div class="card-header text-center">
+            Actualizar datos del tutor
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <input hidden asp-for="Tutor.TutorId" />
+                <div class="form-group row">
+                    <label asp-for="Tutor.NombreTutor" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.NombreTutor" class="form-control col-md-9" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Tutor.ApellidosTutor" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.ApellidosTutor" class="form-control col-md-9" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Tutor.CurpTutor" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.CurpTutor" class="form-control col-md-6" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Tutor.DireccionT" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.DireccionT" class="form-control col-md-6" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Tutor.NacionalidadT" class="col-md-2"></label>
+                    <select asp-for="Tutor.NacionalidadT" class="form-control col-md-3" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
+                    <div class="col-md-1"></div>
+                    <label asp-for="Tutor.FechaNacimientoT" class="col-md-2"></label>
+                    <input type="date" asp-for="@Model.Tutor.FechaNacimientoT" class="form-control col-md-3" />
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Tutor.Cuenta.CorreoElectronico" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.Cuenta.CorreoElectronico" class="form-control col-md-9" />
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Tutor.Contraseña" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Tutor.Contraseña" class="form-control col-md-3" />
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-10"></div>
+                    <button class="btn btn-primary m-1" type="submit">Actualizar</button>
+                </div>
+            </blockquote>
+        </div>
+
+    </div>
+</form>
+
+

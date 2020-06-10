@@ -12,15 +12,23 @@ namespace TestAutismoUI.Pages.Containers
     public class CuestionarioModel : PageModel
     {
         public readonly IRepositoryPreguntas repository;
-        public IEnumerable<Pregunta> _preguntas { get; set; }
+        public Pregunta _pregunta { get;private set; }
+        public Ninio ninio { get; set; }
+        public IEnumerable<Pregunta> _preguntas { get; private set; }
+        
+
+        
         public CuestionarioModel(IRepositoryPreguntas repository)
         {
             this.repository = repository;
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            
+            _pregunta = repository.GetPregunta(id);
             _preguntas = repository.GetPreguntas();
         }
+        
     }
 }

@@ -12,16 +12,21 @@ namespace TestAutismoUI.Pages.Containers
     public class RegistroNinioModel : PageModel
     {
         public readonly IRepositoryNinios repository;
+        [BindProperty]
         public Ninio Ninio { get; set; }
+        public int NewNinio { get; set; }
+        public int TutorId { get; set; }
 
         public RegistroNinioModel(IRepositoryNinios repository)
         {
             this.repository = repository;
         }
 
-        public void OnGet(Ninio bo)
+        public IActionResult OnPost(int id)
         {
-            Ninio = repository.CreateNinio(bo);
+            
+            NewNinio = repository.CreateNinio(Ninio);
+            return Redirect("/Containers/Ninios?Id=" + id);
         }
     }
 }

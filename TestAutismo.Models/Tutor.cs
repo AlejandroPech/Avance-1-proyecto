@@ -15,9 +15,7 @@ namespace TestAutismo.Models
         [Display(Name ="Curp",Prompt ="Curp")]
         public string CurpTutor { get; set; }
         [Display(Name ="Fecha de Na.",Prompt ="Fecha de Na.")]
-        public DateTime FechaNacimientoT { get; set; }
-        [Display(Name ="Genero")]
-        public bool GeneroT { get; set; }
+        public DateTime FechaNacimientoT { get; set; }        
         [Display(Name ="Direccion",Prompt ="Direccion")]
         public string DireccionT { get; set; }
         [Display(Prompt ="Contraseña")]

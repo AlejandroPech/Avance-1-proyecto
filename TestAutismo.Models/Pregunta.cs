@@ -9,5 +9,7 @@ namespace TestAutismo.Models
         public int PreguntaId { get; set; }
         public bool Tipo { get; set; }
         public string PreguntaRealizada { get; set; }
+        public int RespuestaId { get; set; }
+        public Respuesta Respuesta { get; set; }
     }
 }

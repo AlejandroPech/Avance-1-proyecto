@@ -15,8 +15,7 @@ namespace TestAutismo.Models
         public string NombreCompletoNiño { get {return $"{NombreNinio} {ApellidosNinio}".Trim(); }}
         [Display(Name = "Curp", Prompt = "Curp")]
         public string CurpNinio { get; set; }
-        [Display(Name = "Genero")]
-        public bool GeneroNinio { get; set; }
+        
         [Display(Name = "Nacionalidad", Prompt = "Nacionalidad")]
         public Nacionalidad Nacionalidad { get; set; }
         [Display(Name = "Direccion", Prompt = "Direccion")]

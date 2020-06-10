@@ -9,6 +9,8 @@ namespace TestAutismo.Services
     {
         public IEnumerable<Tutor> GetTutors();
         public Tutor GetTutor(int id);
-        public Tutor CreateTutor(Tutor bo);
+        public int CreateTutor(Tutor bo);
+        public Tutor UpdateTutor(Tutor tutor);
+        
     }
 }

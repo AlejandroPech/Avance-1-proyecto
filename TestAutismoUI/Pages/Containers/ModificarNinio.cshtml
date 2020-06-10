@@ -4,4 +4,58 @@
     ViewData["Title"] = "ModificarNinio";
 }
 <h1 class="text-center">Modificar Datos del Niño</h1>
-<p>@Model.ninio.NombreCompletoNiño</p>
+
+
+<form class="mt-3" method="post">
+    
+        <div class="card mb-3" style="max-width: 1080px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="~/Fotografias/nofoto.jpg" class="card-img" alt="..." asp-append-version="true" style="width:350px;height:400px">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <input hidden asp-for="@Model.Ninio.NinioId"/>
+                        
+                        <div class="form-group row">
+                            <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.ApellidosNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.ApellidosNinio" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.Nacionalidad" class="col-md-3"></label>
+                            <select asp-for="Ninio.Nacionalidad" class="form-control col-md-8" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CurpNinio" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CurpNinio" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.FechaNacimientoN" class="col-md-3"></label>
+                            <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.NombreCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.NombreCentro" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.DireccionCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Ninio.CentroEducativo.ClaveCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-10"></div>
+                            <button class="btn btn-primary m-1" type="submit">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</form>

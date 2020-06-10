@@ -9,25 +9,25 @@ using TestAutismo.Services;
 
 namespace TestAutismoUI.Pages.Containers
 {
-    public class ModificarNinioModel : PageModel
+    public class TutorModel : PageModel
     {
-        public IRepositoryNinios repository;
+        public IRepositoryTutor repository;
         [BindProperty]
-        public Ninio Ninio { get; private set; }
-        public ModificarNinioModel(IRepositoryNinios repository)
+        public Tutor Tutor { get; private set; }
+        public TutorModel(IRepositoryTutor repository)
         {
             this.repository = repository;
         }
         public void OnGet(int id)
         {
-            Ninio = repository.GetNinio(id);
-
+            Tutor = repository.GetTutor(id);
+            ViewData["Tutor2"] = id;
         }
-        public IActionResult OnPost(Ninio nini)
+
+        public IActionResult OnPost(Tutor tutor)
         {
-            Ninio = repository.UpdateNinio(nini);
-            return Redirect("/Containers/Ninios?Id="+ 1);
-            
+            Tutor = repository.UpdateTutor(tutor);
+            return Page();
         }
     }
 }

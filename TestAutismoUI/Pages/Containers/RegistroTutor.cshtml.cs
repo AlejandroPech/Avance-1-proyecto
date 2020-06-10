@@ -11,16 +11,24 @@ namespace TestAutismoUI.Pages.Containers
 {
     public class RegistroTutorModel : PageModel
     {
+        [BindProperty]
         public Tutor NewTutor { get; set; }
+        public int newtutor { get; set; }
         private readonly IRepositoryTutor repositoriy;
         
         public RegistroTutorModel(IRepositoryTutor repository)
         {
             this.repositoriy = repository;
         }
-        public void OnGet(Tutor bo)
+        /*public void OnGet()
         {
-            NewTutor = repositoriy.CreateTutor(bo);
+            newtutor = repositoriy.CreateTutor(NewTutor);
+        }*/
+        public IActionResult OnPost()
+        {
+            newtutor = repositoriy.CreateTutor(NewTutor);
+            //ViewData["newtutor"] = newtutor;
+            return Redirect("/Containers/RegistroNinio?Id="+newtutor);
         }
     }
 }

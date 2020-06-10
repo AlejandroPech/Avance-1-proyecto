@@ -8,5 +8,7 @@ namespace TestAutismo.Services
     public interface IRepositoryPreguntas
     {
         public IEnumerable<Pregunta> GetPreguntas();
+
+        public Pregunta GetPregunta(int id);
     }
 }

@@ -7,8 +7,9 @@ namespace TestAutismo.Services
 {
     public interface IRepositoryNinios
     {
-        public IEnumerable<Ninio> GetNinios();
-        public Ninio GetNinio(int id);
-        public Ninio CreateNinio(Ninio bo);
+        public IEnumerable<Ninio> GetNiniosbyTutor(int id);
+        public Ninio GetNinio(int id);        
+        public Ninio UpdateNinio(Ninio ninio);
+        public int CreateNinio(Ninio ninio);
     }
 }

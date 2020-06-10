@@ -1,17 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TestAutismoUI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body>    
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">TestAutismoUI</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Test Autismo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,11 +22,44 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>                        
                     </ul>
+
                 </div>
+                @{
+                    if (ViewData["Tutor"] == null)
+                    {
+                        ViewData["Tutor"] = 0;
+                    }
+                    if (ViewData["Tutor2"] == null)
+                    {
+                        ViewData["Tutor2"] = 0;
+                    }
+                    int numero = (int)ViewData["Tutor"];
+                    int numero2 = (int)ViewData["Tutor2"];
+                    if (numero == 0)
+                    {
+                        numero = numero2;
+                    }
+                    if (numero2 == 0)
+                    {
+                        numero2 = numero;
+                    }
+                }
+                @if (String.IsNullOrEmpty((string)ViewData["Panel"]))
+                {
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Jesus Alejandro Pech Paredes<span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a asp-page="/Containers/Tutor" asp-route-Id="@numero">Perfil</a></li>
+                            <li><a asp-page="/Containers/Ninios" asp-route-Id="@numero2">Niños</a></li>
+                            <li><a asp-page="/Index">Log out</a></li>
+                        </ul>
+                    </div>
+                }
             </div>
         </nav>
     </header>
