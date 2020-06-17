@@ -13,20 +13,28 @@ namespace TestAutismoUI.Pages.Containers
     {
         [BindProperty]
         public Tutor NewTutor { get; set; }
+        [BindProperty]
+        public Cuenta Cuenta { get; set; }
         public int newtutor { get; set; }
-        private readonly IRepositoryTutor repositoriy;
+        public readonly IRepository<Tutor> repository;
+        public readonly IRepository<Cuenta> repositorycuenta;       
         
-        public RegistroTutorModel(IRepositoryTutor repository)
+        public RegistroTutorModel(IRepository<Tutor>repository,IRepository<Cuenta> repositorycuenta)
         {
-            this.repositoriy = repository;
+            this.repository = repository;
+            this.repositorycuenta = repositorycuenta;
+            
         }
         /*public void OnGet()
         {
-            newtutor = repositoriy.CreateTutor(NewTutor);
+            NewTutor = new Tutor();
+            Cuenta = new Cuenta();
         }*/
         public IActionResult OnPost()
         {
-            newtutor = repositoriy.CreateTutor(NewTutor);
+            repositorycuenta.Insert(Cuenta);
+            NewTutor.Cuenta = Cuenta;
+            newtutor = repository.Insert(NewTutor);
             //ViewData["newtutor"] = newtutor;
             return Redirect("/Containers/RegistroNinio?Id="+newtutor);
         }

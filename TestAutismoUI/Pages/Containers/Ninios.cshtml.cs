@@ -12,14 +12,11 @@ namespace TestAutismoUI.Pages.Containers
 {
     public class NiniosModel : PageModel
     {
-        private readonly IRepositoryNinios repository;
+        private readonly INiniosRepository repository;
 
-        public IEnumerable<Ninio> Ninios { get; private set; }
-        
-
-        
-        
-        public NiniosModel(IRepositoryNinios repository)
+        public Tutor Ninios { get; private set; }    
+                        
+        public NiniosModel(INiniosRepository repository)
         {
             this.repository = repository;
         }

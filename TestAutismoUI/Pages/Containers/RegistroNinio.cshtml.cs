@@ -11,21 +11,29 @@ namespace TestAutismoUI.Pages.Containers
 {
     public class RegistroNinioModel : PageModel
     {
-        public readonly IRepositoryNinios repository;
+        public readonly IRepository<Ninio> niniorepository;
+        public readonly IRepository<CentroEducativo> centrorepository;
+        
         [BindProperty]
         public Ninio Ninio { get; set; }
+        [BindProperty]
+        public CentroEducativo Centro { get;set; }
         public int NewNinio { get; set; }
-        public int TutorId { get; set; }
+        
 
-        public RegistroNinioModel(IRepositoryNinios repository)
+        public RegistroNinioModel(IRepository<Ninio> niniorepository, IRepository<CentroEducativo> centrorepository)
         {
-            this.repository = repository;
+            this.niniorepository = niniorepository;
+            this.centrorepository = centrorepository;
         }
 
         public IActionResult OnPost(int id)
         {
-            
-            NewNinio = repository.CreateNinio(Ninio);
+
+            Ninio.TutorId = id;
+            centrorepository.Insert(Centro);
+            Ninio.CentroEducativo = Centro;
+            NewNinio = niniorepository.Insert(Ninio);
             return Redirect("/Containers/Ninios?Id=" + id);
         }
     }

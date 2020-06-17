@@ -16,22 +16,24 @@ namespace TestAutismoUI.Pages
        
         
         private readonly ILogger<IndexModel> _logger;
+        [BindProperty]
+        public Cuenta Cuenta { get; set; }      
+        
+        public INiniosRepository repository;
+        public int numero;
 
-
-        public IndexModel(ILogger<IndexModel> logger,IRepositoryTutor repository)
+        public IndexModel(ILogger<IndexModel> logger,INiniosRepository repository)
         {
             _logger = logger;
-            this.repositoriy = repository;
-            
-        }
-
-        private readonly IRepositoryTutor repositoriy;
-        public Tutor Tutors { get; private set; }
-        
-        public void OnGet(int id)
+            this.repository = repository;            
+        }          
+        public IActionResult OnPost()
         {
-            Tutors = repositoriy.GetTutor(id);
-            ViewData["Panel"] = id.ToString();
+            numero = repository.InicioSesion(Cuenta);
+            //int id;
+
+            return Redirect("/Containers/Ninios?Id=" +numero);
+            //ViewData["Panel"] = id.ToString();            
         }
     }
 }

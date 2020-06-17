@@ -18,10 +18,10 @@
     <a class="btn btn-secondary m-1" asp-page="/Containers/RegistroNinio" asp-route-Id="@numero">Ir a registrar niño</a>
 </div>
 
-@if (Model.Ninios.Any())
+@if (Model.Ninios.Ninios.Any())
 {
 <div class="card mb-3" style="max-width: 1080px;">
-    @foreach (var item in Model.Ninios)
+    @foreach (var item in Model.Ninios.Ninios)
     {        
         var foto = $"~/Fotografias/{(string.IsNullOrEmpty(item.Fotografia) ? "nofoto.jpg":item.Fotografia)}";
     <div class="card mb-3" style="max-width: 1080px;">
@@ -41,7 +41,7 @@
                     <p>Clave del Centro: @item.CentroEducativo.ClaveCentro</p>
                     <div class="form-group row">
                         <div class="col-md-6"></div>
-                        <a asp-page="/Containers/ModificarNinio" asp-route-Id="@item.NinioId" class="btn btn-primary m-1 button">Modificar datos</a>
+                        <a asp-page="/Containers/ModificarNinio" asp-route-Id="@item.Id" class="btn btn-primary m-1 button">Modificar datos</a>
                         <a class="btn btn-success m-1 button" asp-page="/Containers/Cuestionario" asp-route-Id="1" >Ir al cuestionario</a>
                     </div>
                 </div>

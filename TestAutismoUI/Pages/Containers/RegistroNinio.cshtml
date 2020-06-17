@@ -15,7 +15,6 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <input hidden asp-for="@Model.TutorId"/>
                         <div class="form-group row">
                             <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
                             <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="form-control col-md-8" />
@@ -33,24 +32,29 @@
                             <input type="text" role="textbox" asp-for="@Model.Ninio.CurpNinio" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
+                            <label asp-for="Ninio.Direccion" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Ninio.Direccion" class="form-control col-md-8" />
+                        </div>
+                        <div class="form-group row">
                             <label asp-for="Ninio.FechaNacimientoN" class="col-md-3"></label>
                             <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.NombreCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.NombreCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.NombreCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.NombreCentro" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.DireccionCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.DireccionCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.DireccionCentro" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.ClaveCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.ClaveCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.ClaveCentro" class="form-control col-md-8" />
                         </div>
+                        <input hidden asp-for="@Model.Ninio.TutorId" />
                         <div class="form-group row">
                             <div class="col-md-9"></div>
-                            <button class="btn btn-success m1" type="submit">Registrar Niño</button>                            
+                            <button class="btn btn-success m1" type="submit">Registrar Niño</button>
                         </div>
                     </div>
                 </div>

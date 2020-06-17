@@ -15,8 +15,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <input hidden asp-for="@Model.Ninio.NinioId"/>
-                        
+                        <input hidden asp-for="@Model.Ninio.Id"/>
+                        <input hidden asp-for="@Model.Centro.Id"/>
+                        <input hidden asp-for="@Model.Ninio.CentroEducativoId" />
+                        <input hidden asp-for="@Model.Ninio.TutorId" />
                         <div class="form-group row">
                             <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
                             <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="form-control col-md-8" />
@@ -38,16 +40,16 @@
                             <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.NombreCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.NombreCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.NombreCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.NombreCentro" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.DireccionCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.DireccionCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.DireccionCentro" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
-                            <label asp-for="Ninio.CentroEducativo.ClaveCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CentroEducativo.ClaveCentro" class="form-control col-md-8" />
+                            <label asp-for="Centro.ClaveCentro" class="col-md-3"></label>
+                            <input type="text" role="textbox" asp-for="@Model.Centro.ClaveCentro" class="form-control col-md-8" />
                         </div>
                         <div class="form-group row">
                             <div class="col-md-10"></div>

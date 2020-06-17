@@ -11,7 +11,9 @@
         </div>
         <div class="card-body">
             <blockquote class="blockquote mb-0">
-                <input hidden asp-for="Tutor.TutorId" />
+               <input hidden asp-for="@Model.Tutor.Id"/>
+                <input hidden asp-for="@Model.Tutor.CuentaId" />
+                <input hidden asp-for="@Model.Cuenta.Id"/>
                 <div class="form-group row">
                     <label asp-for="Tutor.NombreTutor" class="col-md-2"></label>
                     <input type="text" role="textbox" asp-for="@Model.Tutor.NombreTutor" class="form-control col-md-9" />
@@ -37,12 +39,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label asp-for="Tutor.Cuenta.CorreoElectronico" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.Tutor.Cuenta.CorreoElectronico" class="form-control col-md-9" />
+                    <label asp-for="Cuenta.CorreoElectronico" class="col-md-2"></label>
+                    <input type="text" role="textbox" asp-for="@Model.Cuenta.CorreoElectronico" class="form-control col-md-9" />
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Tutor.Contraseña" class="col-md-2"></label>
-                    <input type="text" role="textbox" asp-for="@Model.Tutor.Contraseña" class="form-control col-md-3" />
+                    <label asp-for="Cuenta.Contraseña" class="col-md-2"></label>
+                    <input type="password" role="textbox" asp-for="@Model.Cuenta.Contraseña" class="form-control col-md-3" />
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10"></div>

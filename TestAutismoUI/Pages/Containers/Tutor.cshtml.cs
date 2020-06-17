@@ -11,23 +11,29 @@ namespace TestAutismoUI.Pages.Containers
 {
     public class TutorModel : PageModel
     {
-        public IRepositoryTutor repository;
+        public IRepository<Tutor> repository;
+        public IRepository<Cuenta> repositorycuenta;
         [BindProperty]
-        public Tutor Tutor { get; private set; }
-        public TutorModel(IRepositoryTutor repository)
+        public Tutor Tutor { get; set; }
+        [BindProperty]
+        public Cuenta Cuenta { get; set; }
+        public TutorModel(IRepository<Tutor> repository,IRepository<Cuenta> repositorycuenta)
         {
             this.repository = repository;
+            this.repositorycuenta = repositorycuenta;
         }
         public void OnGet(int id)
         {
-            Tutor = repository.GetTutor(id);
+            Tutor = repository.Get(id);
+            Cuenta = repositorycuenta.Get(Tutor.CuentaId);
             ViewData["Tutor2"] = id;
         }
 
-        public IActionResult OnPost(Tutor tutor)
+        public IActionResult OnPost()
         {
-            Tutor = repository.UpdateTutor(tutor);
-            return Page();
+            repository.Update(Tutor);
+            repositorycuenta.Update(Cuenta);
+            return Redirect("/containers/tutor?id="+Tutor.Id);
         }
     }
 }

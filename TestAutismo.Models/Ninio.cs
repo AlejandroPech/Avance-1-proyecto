@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestAutismo.Models
 {
-    public class Ninio
+    public class Ninio: BaseEntity
     {
-        public int NinioId { get; set; }
+        [Required(ErrorMessage = "Nombre del niño requerido")]
         [Display(Name = "Nombre", Prompt = "Nombre")]
         public string NombreNinio { get; set; }
+        [Required(ErrorMessage = "Apellidos del niño requerido")]
         [Display(Name = "Apellidos", Prompt = "Apellidos")]
         public string ApellidosNinio { get; set; }
         public string NombreCompletoNiño { get {return $"{NombreNinio} {ApellidosNinio}".Trim(); }}
@@ -23,9 +25,16 @@ namespace TestAutismo.Models
         [Display(Name = "Fecha de Na.", Prompt = "Fecha de Na.")]
         public DateTime FechaNacimientoN { get; set; }
         public string Fotografia { get; set; }
+        [Required(ErrorMessage = "Tutor requerido")]
+        [Display(Name = "Tutor")]
+        [ForeignKey("Tutor")]
         public int TutorId { get; set; }
         public Tutor Tutor { get; set; }
+        [Required(ErrorMessage = "Centro Educativo Requerido")]
+        [Display(Name = "Centro Educativi")]
+        [ForeignKey("CentroEducativo")]
         public int CentroEducativoId { get; set; }
         public CentroEducativo CentroEducativo { get; set; }
+        
     }
 }

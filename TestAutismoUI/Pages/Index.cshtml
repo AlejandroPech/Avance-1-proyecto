@@ -23,32 +23,30 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <label asp-for="Tutors.Cuenta.CorreoElectronico"></label>
-                <input type="text" role="textbox" class="form-control form-text form-control" asp-for="@Model.Tutors.Cuenta.CorreoElectronico" />
+                <label asp-for="Cuenta.CorreoElectronico"></label>
+                <input type="text" role="textbox" class="form-control form-text form-control" asp-for="@Model.Cuenta.CorreoElectronico" />
             </div>
             <div class="col-md-4"></div>
         </div>
-    </form>
-    <form class="mt-5" method="post">
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <label asp-for="Tutors.Contraseña"></label>
-                <input type="text" role="textbox" class="form-control form-text form-control" asp-for="@Model.Tutors.Contraseña" />
+                <label asp-for="Cuenta.Contraseña"></label>
+                <input type="password" role="textbox" class="form-control form-text form-control" asp-for="@Model.Cuenta.Contraseña" />
             </div>
             <div class="col-md-4"></div>
         </div>
+        <div class="text-center">
+            <a asp-page="/Containers/RegistroTutor" class="text-center">Ir a Registrarme</a>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success m1">Iniciar Sesión</button>
+
+            </div>
+            <div class="col-md-5"></div>
+        </div>
     </form>
-    <br />
-    <div class="text-center">
-        <a asp-page="/Containers/RegistroTutor" class="text-center">Ir a Registrarme</a>
-    </div>
-    <div class="row">
-        <div class="col-md-5"></div>   
-        <div class="col-md-2">            
-            <a class="btn btn-success m-1" asp-page="/Containers/Ninios" asp-route-Id="1">Iniciar Sesión</a>
-        </div>                    
-        <div class="col-md-5"></div>
-    </div>
-    
+       
 </div>

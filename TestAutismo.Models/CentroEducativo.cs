@@ -5,9 +5,8 @@ using System.Text;
 
 namespace TestAutismo.Models
 {
-    public class CentroEducativo
-    {
-        public int CentroEducativoId { get; set; }
+    public class CentroEducativo:BaseEntity
+    {        
         [Display(Name = "Centro Edu.", Prompt = "Centro Educativo")]
         public string NombreCentro { get; set; }
         [Display(Name = "Direccion del C.E.", Prompt = "Direccion del centro educativo")]
