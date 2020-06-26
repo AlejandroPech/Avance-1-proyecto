@@ -4,3 +4,37 @@
     ViewData["Title"] = "Resultados";
 }
 <h1 class="text-center">Resultados</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">N°Pregunta</th>
+            <th scope="col">Pregunta</th>
+            <th scope="col">Respuesta</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.respuesta)
+        {
+            <tr>
+
+                <td class="text-center">@item.Pregunta.Id</td>
+                <td>@item.Pregunta.PreguntaRealizada</td>
+                <td class="text-center">
+                    @if (item.ValorRespuesta == true)
+                    {
+                        <p>Si</p>
+                    }
+                    else
+                    {
+                        <p>No</p>
+                    }
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+

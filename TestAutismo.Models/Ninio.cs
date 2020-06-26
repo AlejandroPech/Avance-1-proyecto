@@ -35,6 +35,7 @@ namespace TestAutismo.Models
         [ForeignKey("CentroEducativo")]
         public int CentroEducativoId { get; set; }
         public CentroEducativo CentroEducativo { get; set; }
-        
+        public ICollection<Respuesta> Respuestas { get; set; }
+
     }
 }

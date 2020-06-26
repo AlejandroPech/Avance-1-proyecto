@@ -10,6 +10,6 @@ namespace TestAutismo.Models
         
         [Display(Name = "Correo", Prompt = "Correo")]
         public string CorreoElectronico { get; set; }
-        public string Contraseña { get; set; }
+        public string Contrasenia { get; set; }
     }
 }

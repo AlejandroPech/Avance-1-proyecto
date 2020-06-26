@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestAutismo.Services.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace TestAutismo.Services.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     Update = table.Column<DateTime>(nullable: true),
                     CorreoElectronico = table.Column<string>(nullable: true),
-                    Contraseña = table.Column<string>(nullable: true)
+                    Contrasenia = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,7 +48,7 @@ namespace TestAutismo.Services.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Update = table.Column<DateTime>(nullable: true),
-                    Version = table.Column<int>(nullable: false)
+                    Version = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {

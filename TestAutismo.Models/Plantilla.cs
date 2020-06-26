@@ -6,6 +6,6 @@ namespace TestAutismo.Models
 {
     public class Plantilla:BaseEntity
     {
-        public int Version { get; set; }
+        public double Version { get; set; }
     }
 }

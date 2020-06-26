@@ -54,6 +54,8 @@ namespace TestAutismo.Services
 
             if (obj.Id <= 0) throw new ArgumentNullException("Entity");
 
+            obj.Update = DateTime.Now;
+
             var entity = entities.Attach(obj); 
             entity.State = EntityState.Modified;
             context.SaveChanges();

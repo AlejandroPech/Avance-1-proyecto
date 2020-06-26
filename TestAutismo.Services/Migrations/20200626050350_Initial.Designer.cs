@@ -10,8 +10,8 @@ using TestAutismo.Services;
 namespace TestAutismo.Services.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20200614160404_ModificateNinio")]
-    partial class ModificateNinio
+    [Migration("20200626050350_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace TestAutismo.Services.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Contraseña")
+                    b.Property<string>("Contrasenia")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CorreoElectronico")
@@ -136,8 +136,8 @@ namespace TestAutismo.Services.Migrations
                     b.Property<DateTime?>("Update")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
+                    b.Property<double>("Version")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -274,7 +274,7 @@ namespace TestAutismo.Services.Migrations
             modelBuilder.Entity("TestAutismo.Models.Respuesta", b =>
                 {
                     b.HasOne("TestAutismo.Models.Ninio", "Ninio")
-                        .WithMany()
+                        .WithMany("Respuestas")
                         .HasForeignKey("NinioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

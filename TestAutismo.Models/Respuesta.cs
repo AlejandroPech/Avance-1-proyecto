@@ -6,6 +6,7 @@ using System.Text;
 
 namespace TestAutismo.Models
 {
+    
     public class Respuesta:BaseEntity
     {        
         public bool? ValorRespuesta { get; set; }

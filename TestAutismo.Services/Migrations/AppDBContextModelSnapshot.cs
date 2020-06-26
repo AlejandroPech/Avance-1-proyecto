@@ -53,7 +53,7 @@ namespace TestAutismo.Services.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Contraseña")
+                    b.Property<string>("Contrasenia")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CorreoElectronico")
@@ -134,8 +134,8 @@ namespace TestAutismo.Services.Migrations
                     b.Property<DateTime?>("Update")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
+                    b.Property<double>("Version")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -272,7 +272,7 @@ namespace TestAutismo.Services.Migrations
             modelBuilder.Entity("TestAutismo.Models.Respuesta", b =>
                 {
                     b.HasOne("TestAutismo.Models.Ninio", "Ninio")
-                        .WithMany()
+                        .WithMany("Respuestas")
                         .HasForeignKey("NinioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

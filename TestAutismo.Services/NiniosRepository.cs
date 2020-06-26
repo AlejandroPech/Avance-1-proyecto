@@ -31,10 +31,10 @@ namespace TestAutismo.Services
         public int InicioSesion(Cuenta cuenta)
         {
             var tutors=context.Tutores.Include(x=>x.Cuenta).ToList();
-            int numero = 2;
+            int numero = 0;
             foreach(var item in tutors)
             {
-                if (cuenta.Contraseña == item.Cuenta.Contraseña && cuenta.CorreoElectronico==item.Cuenta.CorreoElectronico)
+                if (cuenta.Contrasenia == item.Cuenta.Contrasenia && cuenta.CorreoElectronico==item.Cuenta.CorreoElectronico)
                 {
                     numero = item.Id;
                     
@@ -43,5 +43,9 @@ namespace TestAutismo.Services
             return numero;
         }
 
+        public IEnumerable<Respuesta> GetRespuestasbyNinio(int id)
+        {
+            return context.Respuestas.Include(x => x.Pregunta).Where(x => x.NinioId == id);
+        }
     }
 }

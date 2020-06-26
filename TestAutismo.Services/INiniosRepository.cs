@@ -9,6 +9,7 @@ namespace TestAutismo.Services
     {
         public Tutor GetNiniosbyTutor(int id);
         public Ninio GetNinio(int id);
+        public IEnumerable<Respuesta> GetRespuestasbyNinio(int id);
         public int InicioSesion(Cuenta cuenta);
     }
 }
