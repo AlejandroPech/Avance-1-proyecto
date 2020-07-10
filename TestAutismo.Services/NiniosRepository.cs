@@ -45,7 +45,28 @@ namespace TestAutismo.Services
 
         public IEnumerable<Respuesta> GetRespuestasbyNinio(int id)
         {
-            return context.Respuestas.Include(x => x.Pregunta).Where(x => x.NinioId == id);
+            return context.Respuestas.Include(x => x.Pregunta).Where(x => x.NinioId == id).OrderBy(x=>x.PreguntaId);
+        }
+
+        public Respuesta GetRespuesta(int ninio, int pregunta)
+        {
+            IEnumerable<Respuesta> respuestas;
+            respuestas=context.Respuestas.AsEnumerable();
+            Respuesta respuesta = new Respuesta();
+            foreach(var item in respuestas)
+            {
+                if (ninio == item.NinioId && pregunta == item.PreguntaId)
+                {
+                    respuesta = item;
+                }
+                else
+                {
+                    respuesta.NinioId = ninio;
+                    respuesta.PreguntaId = pregunta;                    
+                }
+            }
+            
+            return respuesta;
         }
     }
 }

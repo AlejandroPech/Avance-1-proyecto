@@ -2,12 +2,15 @@
 @model TestAutismoUI.Pages.Containers.CuestionarioModel
 @{
     ViewData["Title"] = "Cuestionario";
-    int numero = Model.numero + 1;
+    var mas = Model.pregunta.Id +1;
+    var menos = Model.pregunta.Id - 1;
+    var guardar = 0;
+    var finalizar = 24;
 }
 <style>
     .button {
         width: 110px;
-        height: auto;
+        height: 30px;
     }
 
     .boton {
@@ -20,98 +23,155 @@
     .card {
         height: 250px;
     }
+
+    .PanelP {
+        max-height: 450px;
+        max-width: 250px;
+    }
+    .scrollber {
+        height: 380px;
+        width: 220px;
+        overflow-y: scroll;
+        margin: 2px;
+    }
+    .margin{
+        margin:5px !important;
+    }
+    .buttom-align{
+        display:flex;
+        align-items:flex-end;
+    }
 </style>
 
-
-<h1 class="text-center">Cuestionario</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <form class="mt-3" method="post">
-    <div class="form-row">
+    <div class="form-group row" style="min-width:1080px">
+        <div class="panel panel-success" style="max-width:270px;">
+            <div class="panel-heading text-center">Preguntas</div>
+            <div class="form-group panel-body">
+                <div class="scrollber">
 
-        <div class="card form-group col-md-12">
-            <div class="card-header text-center">
-                Pregunta
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <input hidden asp-for="Respuesta.NinioId" />
-                    <input hidden asp-for="Respuesta.PreguntaId" />
-                    
-                    <input hidden asp-for="pregunta.Id" />
-                    @Model.pregunta.PreguntaRealizada
-                    
-                    @foreach(var item in Model.respuestas)
+                    @foreach (var pregunta in Model.Preguntas)
                     {
-                        if(Model.Respuesta.NinioId==item.NinioId && Model.Respuesta.PreguntaId == item.PreguntaId)
-                        {
-                            <input hidden asp-for="Respuesta.Id" value="@item.Id"/>
-                        }
+                        <p>
+                            <label class="text-center" style="max-width:247px;">
+                                <input type="submit" hidden class="btn btn-default" asp-for="@Model.numero" value="@pregunta.Id" />
+                                Pregunta @pregunta.Id
+                            </label>
+                        </p>
                     }
-                    <p />
-                    <div>
-                         <input hidden asp-for="preguntarealizada"/>                     
-                    </div>
-                    @foreach (var item in Model.Respuestas)
-                    {
-                        <label>
-                            <input type="radio" asp-for="Respuesta1" value="@item" id="Respuesta1@(item)" />
-                            @item
-                            <apan></apan>
-                        </label>
-                        <br />
-                    }
-                </blockquote>
+                </div>
             </div>
         </div>
+        <div style="max-width:800px;margin:5px;">
+            <h1 class="text-center">Cuestionario</h1>
+            <br />
+            <p>Este test consta de 23 preguntas las cuales se responderan con "Si" o "No", siendo que en caso de que la conducta sea poco frecuente(menos de dos ocasiones) responda "No", por el contrario si ha observado que el menor tiene las siguientes conductas con mucha frecuencia responda "Si"</p>
+            <br />
+            <br />
+            <div class="panel panel-success form-group" style="min-height:230px;max-width:810px;">
+                <div class="panel-heading text-center">
+                    Pregunta @Model.pregunta.Id
+                </div>
+                <div class="panel-body">
+                    <blockquote class="blockquote mb-0">
+                        <input hidden asp-for="Respuesta.NinioId" />
+                        <input hidden asp-for="Respuesta.PreguntaId" />
+                        <input hidden asp-for="Respuesta.Id" />
+                        <input hidden asp-for="pregunta.Id" />
+                        @Model.pregunta.PreguntaRealizada
+                        <p />
 
+
+
+                        @if (Model.Respuesta.ValorRespuesta == true)
+                        {
+                            <label>
+                                <input type="radio" asp-for="Respuesta.ValorRespuesta" value="true" id="Respuesta1Si" checked />
+                                Si
+                                <apan></apan>
+                            </label>
+                            <br />
+                        }
+                        else
+                        {
+                            <label>
+                                <input type="radio" asp-for="Respuesta.ValorRespuesta" value="true" id="Respuesta1Si" />
+                                Si
+                                <apan></apan>
+                            </label>
+                            <br />
+                        }
+                        @if (Model.Respuesta.ValorRespuesta == false)
+                        {
+                            <label>
+                                <input type="radio" asp-for="Respuesta.ValorRespuesta" value="false" id="Respuesta1No" checked />
+                                No
+                                <apan></apan>
+                            </label>
+                            <br />
+                        }
+                        else
+                        {
+                            <label>
+                                <input type="radio" asp-for="Respuesta.ValorRespuesta" value="false" id="Respuesta1No" />
+                                No
+                                <apan></apan>
+                            </label>
+                            <br />
+                        }
+                    </blockquote>
+                    <div class="row float-right margin" style="display:flex; align-items:end !important;">
+                        @if (Model.pregunta.Id <= 1)
+                        {
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@guardar" />
+                                Guardar
+                            </label>
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@mas" />
+                                Siguiente
+                            </label>
+
+                        }
+                        else if (Model.pregunta.Id >= 23)
+                        {
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@guardar" />
+                                Guardar
+                            </label>
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@menos" />
+                                Anterior
+                            </label>
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@finalizar" />
+                                Terminar
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@guardar" />
+                                Guardar
+                            </label>
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@menos" />
+                                Anterior
+                            </label>
+                            <label class="btn btn-success button margin">
+                                <input type="submit" hidden class="btn btn-success button m-1" asp-for="@Model.numero" value="@mas" />
+                                Siguiente
+                            </label>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
     </div>
-
-
-    <div class="form-group row">
-        @if (Model.pregunta.Id <= 1)
-        {
-            <div class="col-md-8"></div>
-            <button type="submit" class="btn btn-success button m-1" onclick="Guardar()">Guardar</button>
-            <button type="submit" class="btn btn-success button m-1" onclick="Aumentar()">Siguiente</button>
-        }
-        else if (Model.pregunta.Id >= 23)
-        {
-            <div class="col-md-8"></div>            
-            <button type="submit" class="btn btn-success button m-1" onclick="Guardar()">Guardar</button>
-            <button type="submit" class="btn btn-success button m-1" onclick="Disminuir()">Anterior</button>
-            <button type="submit" class="btn btn-success button m-1" onclick="Terminar()">Terminar</button>
-
-        }
-        else
-        {
-            <div class="col-md-8"></div>
-            <button type="submit" class="btn btn-success button m-1" onclick="Guardar()">Guardarr</button>
-            <button type="submit" class="btn btn-success button m-1" onclick="Disminuir()">Anterior</button>
-            <button type="submit" class="btn btn-success button m-1" onclick="Aumentar()">Siguiente</button>
-
-        }
-    </div>
+    
 </form>
-
-
-@section Scripts{
-    <script>
-        var mas = "mas";
-        var menos = "menos"
-        var igual = "igual"
-        var guardar = "guardar"
-        var terminar="terminar"
-        function Aumentar() {            
-            var type = document.getElementById("preguntarealizada").value =mas;
-        }
-        function Disminuir() {
-            var type = document.getElementById("preguntarealizada").value = menos;
-        }
-        function Guardar() {
-            var type = document.getElementById("preguntarealizada").value = guardar;
-        }
-        function Terminar() {
-            var type = document.getElementById("preguntarealizada").value =terminar;
-        }
-    </script>
-}

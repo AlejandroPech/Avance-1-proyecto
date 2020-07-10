@@ -39,8 +39,8 @@
                     <p>Centro Educativo: @item.CentroEducativo.NombreCentro</p>
                     <p>Direccion del Centro @item.CentroEducativo.DireccionCentro</p>
                     <p>Clave del Centro: @item.CentroEducativo.ClaveCentro</p>
-                    <div class="form-group row">
-                        <div class="col-md-6"></div>
+                    <div class="form-group row float-lg-right">
+                        
                         <a asp-page="/Containers/ModificarNinio" asp-route-Id="@item.Id" class="btn btn-primary m-1 button">Modificar datos</a>
                         <a class="btn btn-success m-1 button" asp-page="/Containers/Cuestionario" asp-route-Id="@item.Id" asp-route-Pregunta="1">Ir al cuestionario</a>
                     </div>

@@ -11,5 +11,6 @@ namespace TestAutismo.Services
         public Ninio GetNinio(int id);
         public IEnumerable<Respuesta> GetRespuestasbyNinio(int id);
         public int InicioSesion(Cuenta cuenta);
+        public Respuesta GetRespuesta(int ninio, int pregunta);
     }
 }
