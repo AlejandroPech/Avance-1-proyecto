@@ -7,45 +7,102 @@
 
 <form method="post">
     <button type="submit" class="btn btn-danger float-right" value="Export To PDF"> Exportar PDF</button>
-    <input hidden asp-for="Ninio.TutorId"/>
+    <input hidden asp-for="Ninio.TutorId" />
     <input hidden asp-for="Ninio.Id" />
 </form>
-    <table class="table" style="max-width:10160px">
-        <thead class="thead-dark">
+<br />
+<br />
+<h3 class="text-center">Maestro Pase la guia de las graficas, para que pueda ponerselo aqui</h3>
+<br />
+<br />
+<table class="table" style="max-width:10160px">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">Tipo de Pregunta</th>
+            <th scope="col" class="text-center">Falladas</th>
+            
+        </tr>
+    </thead>
+
+    <tbody>       
             <tr>
-                <th scope="col">N°Pregunta</th>
-                <th scope="col">Pregunta</th>
-                <th scope="col">Respuesta</th>
+                <td class="text-center">Normal</td>
+                <td class="text-center">???</td>
             </tr>
-        </thead>
+            <tr>
+                <td class="text-center">Especial</td>
+                <td class="text-center">???</td>
+            </tr>       
+    </tbody>
+</table>
 
-        <tbody>
-            @foreach (var item in Model.respuesta)
-            {
-                <tr>
 
-                    <td class="text-center">@item.Pregunta.Id</td>
-                    <td>@item.Pregunta.PreguntaRealizada</td>
-                    <td class="text-center">
-                        @if (item.ValorRespuesta == true)
-                        {
-                            <p>Si</p>
-                        }
-                        else
-                        {
-                            <p>No</p>
-                        }
-                    </td>
-                </tr>
 
-            }
-        </tbody>
-    </table>
+<div >
+    <h2>Ver Respuestas</h2>
+    <input type="button" value="Ver Respuestas" class="btn btn-success" onclick="GetRespuestas()" />
+    <div id="dynamicTable" class="table-responsive table-responsive-md"></div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
 
-    
-        
+        function GetRespuestas() {
+            $.ajax({
+                url:"?id="+@Model.Ninio.Id+"&handler=AsyncGetRespuestas",
+                method: "GET"
+            }).done(function (data) {
+                //alert("Felicidades se ha ejecutado sin error")
+                CreateTable(data);
+            }).fail(function (jqXHR, textStatus, error) {
+                alert("lo sentimos ha habido un error");
+            });
+        }
 
- 
+        function CreateTable(data) {
+            var colums = [];
+            $.each(data[0], function (key, val) {
+                colums.push(key)
+            });
+
+
+            var Table = document.createElement("table");
+            Table.className = "table table-striped table-info"
+
+
+            var Thead = document.createElement("thead");
+            Thead.className = "thead-dark"
+            var tr = Thead.insertRow(-1);
+            $.each(colums, function (index, value) {
+                var th = document.createElement("th");
+                th.innerHTML = value;
+                tr.appendChild(th);
+            });
+            Table.append(Thead);
+
+
+            var Tbody = document.createElement("tbody");
+            $.each(data, function (index, obj) {
+                var tr = Tbody.insertRow(-1);
+                $.each(obj, function (index, property) {
+                    var cell = tr.insertCell(-1);
+                    cell.innerHTML=property
+                })
+            });
+            Table.append(Tbody);
+
+
+            var Respuesta = $("#dynamicTable");
+            Respuesta.innerHTML = '';
+            Respuesta.append(Table)
+        }
+
+    </script>
+
+}
+
+
+
+
 
 
 

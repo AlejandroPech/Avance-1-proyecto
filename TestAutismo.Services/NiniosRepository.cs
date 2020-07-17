@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TestAutismo.Models;
 
 namespace TestAutismo.Services
@@ -67,6 +68,11 @@ namespace TestAutismo.Services
             }
             
             return respuesta;
+        }
+
+        public async Task<IEnumerable<Respuesta>> AsyncGetRespuestas(int id)
+        {
+            return await context.Respuestas.Include(x => x.Pregunta).Where(x => x.NinioId == id).OrderBy(x => x.PreguntaId).ToListAsync();
         }
     }
 }

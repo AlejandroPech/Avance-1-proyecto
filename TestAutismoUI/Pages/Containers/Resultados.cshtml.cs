@@ -10,6 +10,7 @@ using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.Collections;
 
 namespace TestAutismoUI.Pages.Containers
 {
@@ -54,6 +55,12 @@ namespace TestAutismoUI.Pages.Containers
             MemoryStream stream = new MemoryStream();
             document.Save(stream);
             return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, $"Resultados.pdf");
+        }
+
+        public async Task<IActionResult> OnGetAsyncGetRespuestas(int id)
+        {
+            var lst = await repository.AsyncGetRespuestas(id);
+            return new JsonResult(lst);
         }
     }
 
