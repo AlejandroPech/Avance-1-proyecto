@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Fotografias\" />
+    <Folder Include="wwwroot\lib\pdfmake\" />
   </ItemGroup>
 
   <ItemGroup>

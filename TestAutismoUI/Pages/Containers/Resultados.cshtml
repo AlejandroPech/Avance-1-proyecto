@@ -7,11 +7,14 @@
 
 <form method="post">
     <button type="submit" class="btn btn-danger float-right" value="Export To PDF"> Exportar PDF</button>
+
     <input hidden asp-for="Ninio.TutorId" />
     <input hidden asp-for="Ninio.Id" />
 </form>
+
 <br />
 <br />
+<input class="btn btn-danger" type="button" onclick="GeneratePDF()" value="export pdf" />
 <h3 class="text-center">Maestro Pase la guia de las graficas, para que pueda ponerselo aqui</h3>
 <br />
 <br />
@@ -20,35 +23,39 @@
         <tr>
             <th scope="col" class="text-center">Tipo de Pregunta</th>
             <th scope="col" class="text-center">Falladas</th>
-            
+
         </tr>
     </thead>
 
-    <tbody>       
-            <tr>
-                <td class="text-center">Normal</td>
-                <td class="text-center">???</td>
-            </tr>
-            <tr>
-                <td class="text-center">Especial</td>
-                <td class="text-center">???</td>
-            </tr>       
+    <tbody>
+        <tr>
+            <td class="text-center">Normal</td>
+            <td class="text-center">???</td>
+        </tr>
+        <tr>
+            <td class="text-center">Especial</td>
+            <td class="text-center">???</td>
+        </tr>
     </tbody>
 </table>
 
 
 
-<div >
+<div>
     <h2>Ver Respuestas</h2>
     <input type="button" value="Ver Respuestas" class="btn btn-success" onclick="GetRespuestas()" />
     <div id="dynamicTable" class="table-responsive table-responsive-md"></div>
 </div>
 @section Scripts{
+    <script src="~/lib/pdfmake/pdfmake.min.js"></script>
+    <script src="~/lib/pdfmake/vfs_fonts.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
 
+        })         
         function GetRespuestas() {
             $.ajax({
-                url:"?id="+@Model.Ninio.Id+"&handler=AsyncGetRespuestas",
+                url: "?id=" +@Model.Ninio.Id+"&handler=AsyncGetRespuestas",
                 method: "GET"
             }).done(function (data) {
                 //alert("Felicidades se ha ejecutado sin error")
@@ -84,8 +91,11 @@
             $.each(data, function (index, obj) {
                 var tr = Tbody.insertRow(-1);
                 $.each(obj, function (index, property) {
-                    var cell = tr.insertCell(-1);
-                    cell.innerHTML=property
+                    if (property != null) {
+                        var cell = tr.insertCell(-1);
+                        cell.innerHTML = property
+                    }
+
                 })
             });
             Table.append(Tbody);
@@ -96,6 +106,12 @@
             Respuesta.append(Table)
         }
 
+        function GeneratePDF() {            
+            var win = window.open('', '_blank');
+            var docDefinition = { content: "This is an sample PDF printed with pdfMake" };
+
+            pdfMake.createPdf(docDefinition).open({}, win);
+        }
     </script>
 
 }

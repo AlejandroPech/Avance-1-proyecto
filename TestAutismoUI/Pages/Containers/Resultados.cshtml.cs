@@ -59,8 +59,20 @@ namespace TestAutismoUI.Pages.Containers
 
         public async Task<IActionResult> OnGetAsyncGetRespuestas(int id)
         {
+            List<object> list1 = new List<object>();
+            
             var lst = await repository.AsyncGetRespuestas(id);
-            return new JsonResult(lst);
+            foreach(var item in lst)
+            {
+                string respuesta;
+                if (item.ValorRespuesta == true)
+                    respuesta = "Si";
+                else
+                    respuesta = "No";
+                    var list = new { NumPregunta = item.PreguntaId, Pregunta = item.Pregunta.PreguntaRealizada, Respuesta = respuesta };
+                list1.Add(list);
+            }
+            return new JsonResult(list1);
         }
     }
 
