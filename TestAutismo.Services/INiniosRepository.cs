@@ -14,5 +14,7 @@ namespace TestAutismo.Services
         public int InicioSesion(Cuenta cuenta);
         public Respuesta GetRespuesta(int ninio, int pregunta);
         public Task<IEnumerable<Respuesta>> AsyncGetRespuestas(int id);
+        public int GetResultados(int id);
+
     }
 }

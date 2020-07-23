@@ -29,11 +29,24 @@ namespace TestAutismoUI.Pages
         }          
         public IActionResult OnPost()
         {
-            numero = repository.InicioSesion(Cuenta);
-            //int id;
+            try
+            {
+                numero = repository.InicioSesion(Cuenta);
+                if (numero > 0){                    
+                    return Redirect("/Containers/Ninios?Id=" + numero);
+                }
+                else
+                {
+                    return Redirect("/Index");
+                }
+                //int id;
 
-            return Redirect("/Containers/Ninios?Id=" +numero);
-            //ViewData["Panel"] = id.ToString();            
+                
+                //ViewData["Panel"] = id.ToString(); 
+            }catch(Exception ex)
+            {
+                return Redirect("/Index");
+            }
         }
     }
 }

@@ -1,0 +1,59 @@
+﻿@page
+@model TestAutismoUI.Pages.PDF.ResultadosPDFModel
+@{
+}
+    <div class="col-md-12">
+        <table class="table" style="max-width:10160px">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="text-center">Tipo de Pregunta</th>
+                    <th scope="col" class="text-center">Falladas</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="text-center">Normal</td>
+                    <td class="text-center">@Model.Normales</td>
+                </tr>
+                <tr>
+                    <td class="text-center">Especial</td>
+                    <td class="text-center">@Model.criticas</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">N°Pregunta</th>
+                    <th scope="col">Pregunta</th>
+                    <th scope="col">Respuesta</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.respuesta)
+                {
+                    <tr>
+
+                        <td class="text-center">@item.Pregunta.Id</td>
+                        <td>@item.Pregunta.PreguntaRealizada</td>
+                        <td class="text-center">
+                            @if (item.ValorRespuesta == true)
+                            {
+                                <p>Si</p>
+                            }
+                            else
+                            {
+                                <p>No</p>
+                            }
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>

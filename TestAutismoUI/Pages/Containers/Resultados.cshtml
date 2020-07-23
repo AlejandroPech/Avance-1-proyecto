@@ -14,7 +14,6 @@
 
 <br />
 <br />
-<input class="btn btn-danger" type="button" onclick="GeneratePDF()" value="export pdf" />
 <h3 class="text-center">Maestro Pase la guia de las graficas, para que pueda ponerselo aqui</h3>
 <br />
 <br />
@@ -22,19 +21,19 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col" class="text-center">Tipo de Pregunta</th>
-            <th scope="col" class="text-center">Falladas</th>
-
+            <th scope="col" class="text-center">Falladas en el cuestionario</th>
+           
         </tr>
     </thead>
 
     <tbody>
         <tr>
             <td class="text-center">Normal</td>
-            <td class="text-center">???</td>
+            <td class="text-center">@Model.Normales</td>
         </tr>
         <tr>
             <td class="text-center">Especial</td>
-            <td class="text-center">???</td>
+            <td class="text-center">@Model.criticas</td>
         </tr>
     </tbody>
 </table>

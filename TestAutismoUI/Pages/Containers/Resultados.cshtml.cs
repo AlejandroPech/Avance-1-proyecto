@@ -15,9 +15,11 @@ using System.Collections;
 namespace TestAutismoUI.Pages.Containers
 {
     public class ResultadosModel : PageModel
-    {
+    {        
+        public int Normales { get; set; }
+        public int criticas { get; set; }
         public INiniosRepository repository;
-        
+        public int resultado { get; set; }
         public IEnumerable<Respuesta> respuesta { get; set; }
         [BindProperty]
         public Ninio Ninio { get; set; }
@@ -33,6 +35,18 @@ namespace TestAutismoUI.Pages.Containers
         {
             respuesta = repository.GetRespuestasbyNinio(id);
             Ninio = ninio.Get(id);
+            resultado = repository.GetResultados(id);
+            foreach(var item in respuesta)
+            {
+                if(item.ValorRespuesta==false && item.Pregunta.Tipo==false)
+                {
+                    criticas = criticas + 1;
+                }
+                if(item.ValorRespuesta==false && item.Pregunta.Tipo == true)
+                {
+                    Normales = Normales + 1;
+                }
+            }
         }
 
 
@@ -51,7 +65,7 @@ namespace TestAutismoUI.Pages.Containers
             //Assign WebKit settings to HTML converter
             htmlConverter.ConverterSettings = settings;
             //Convert URL to PDF
-            PdfDocument document = htmlConverter.Convert($"https://localhost:44302/containers/resultados/?id=" + Ninio.Id);
+            PdfDocument document = htmlConverter.Convert($"https://localhost:44302/pdf/resultadospdf/?id=" + Ninio.Id);
             MemoryStream stream = new MemoryStream();
             document.Save(stream);
             return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, $"Resultados.pdf");

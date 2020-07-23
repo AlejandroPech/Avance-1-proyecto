@@ -75,5 +75,46 @@ namespace TestAutismo.Services
         {            
             return await context.Respuestas.Include(x => x.Pregunta).Where(x => x.NinioId == id).OrderBy(x=>x.PreguntaId).ToListAsync();
         }
+
+        public int GetResultados(int id)
+        {
+            var respuestas = context.Respuestas.Include(x=>x.Pregunta).Where(x=>x.NinioId==id).ToList();
+            int resultado = 0;
+            int critica = 0;
+            int normal = 0;
+            foreach(var item in respuestas)
+            {
+                
+                if (item.ValorRespuesta == false)
+                {                    
+                    if (item.Pregunta.Tipo == false)
+                    {
+                        critica = critica + 1;
+                        if (critica == 2)
+                        {
+                            resultado = resultado + 10;
+                        }
+                        if (critica > 2)
+                        {
+                            resultado = resultado + 3;
+                        }
+                    }
+                    if (item.Pregunta.Tipo == true)
+                    {
+                        normal = normal + 1;
+                        critica = critica + 1;
+                        if (normal == 3)
+                        {
+                            resultado = resultado + 10;
+                        }
+                        if (normal > 2)
+                        {
+                            resultado = resultado + 2;
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }        
     }
 }
