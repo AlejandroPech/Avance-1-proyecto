@@ -51,20 +51,15 @@ namespace TestAutismoUI.Pages.Containers
 
 
         public IActionResult OnPost()
-        {
-            
+        {            
             return ConvertPdf(); 
         }
         public FileContentResult ConvertPdf()
         {
-            //Initialize HTML to PDF converter 
             HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter();
-            WebKitConverterSettings settings = new WebKitConverterSettings();
-            //Set WebKit path
-            settings.WebKitPath = Path.Combine(_hostingEnvironment.ContentRootPath, "QtBinariesWindows");
-            //Assign WebKit settings to HTML converter
-            htmlConverter.ConverterSettings = settings;
-            //Convert URL to PDF
+            WebKitConverterSettings settings = new WebKitConverterSettings();            
+            settings.WebKitPath = Path.Combine(_hostingEnvironment.ContentRootPath, "QtBinariesWindows");        
+            htmlConverter.ConverterSettings = settings;            
             PdfDocument document = htmlConverter.Convert($"https://localhost:44302/pdf/resultadospdf/?id=" + Ninio.Id);
             MemoryStream stream = new MemoryStream();
             document.Save(stream);

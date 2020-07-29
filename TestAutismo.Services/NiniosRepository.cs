@@ -38,9 +38,10 @@ namespace TestAutismo.Services
             {
                 if (cuenta.Contrasenia == item.Cuenta.Contrasenia && cuenta.CorreoElectronico==item.Cuenta.CorreoElectronico)
                 {
-                    numero = item.Id;
-                    
+                    numero = item.Id;                    
                 }
+                if (cuenta.Contrasenia == null || cuenta.CorreoElectronico == null)
+                    numero = 0;
             } 
             return numero;
         }
@@ -101,13 +102,12 @@ namespace TestAutismo.Services
                     }
                     if (item.Pregunta.Tipo == true)
                     {
-                        normal = normal + 1;
-                        critica = critica + 1;
+                        normal = normal + 1;                        
                         if (normal == 3)
                         {
                             resultado = resultado + 10;
                         }
-                        if (normal > 2)
+                        if (normal > 3)
                         {
                             resultado = resultado + 2;
                         }

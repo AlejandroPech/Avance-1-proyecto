@@ -32,6 +32,8 @@ namespace TestAutismoUI.Pages.Containers
         }*/
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+                return Page();
             repositorycuenta.Insert(Cuenta);
             NewTutor.Cuenta = Cuenta;
             newtutor = repository.Insert(NewTutor);

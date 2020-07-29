@@ -31,6 +31,8 @@ namespace TestAutismoUI.Pages.Containers
 
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+                return Page();
             repository.Update(Tutor);
             repositorycuenta.Update(Cuenta);
             return Redirect("/containers/tutor?id="+Tutor.Id);

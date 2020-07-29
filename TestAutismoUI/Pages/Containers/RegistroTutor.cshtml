@@ -12,13 +12,19 @@
         </div>
         <div class="card-body">
             <blockquote class="blockquote mb-0">
+
+
                 <div class="form-group row">
                     <label asp-for="NewTutor.NombreTutor" class="col-md-2"></label>
                     <input type="text" role="textbox" asp-for="@Model.NewTutor.NombreTutor" class="form-control col-md-9" />
+                    <div class="col-md-2"></div>
+                    <span asp-validation-for="@Model.NewTutor.NombreTutor" class="text-danger"> </span>
                 </div>
                 <div class="form-group row">
                     <label asp-for="NewTutor.ApellidosTutor" class="col-md-2"></label>
                     <input type="text" role="textbox" asp-for="@Model.NewTutor.ApellidosTutor" class="form-control col-md-9" />
+                    <div class="col-md-2"></div>
+                    <span asp-validation-for="@Model.NewTutor.ApellidosTutor" class="text-danger"> </span>
                 </div>
                 <div class="form-group row">
                     <label asp-for="NewTutor.CurpTutor" class="col-md-2"></label>
@@ -34,19 +40,27 @@
                     <div class="col-md-1"></div>
                     <label asp-for="NewTutor.FechaNacimientoT" class="col-md-2"></label>
                     <input type="date" asp-for="@Model.NewTutor.FechaNacimientoT" class="form-control col-md-3" />
+                    <div class="col-md-8"></div>
+                    <span asp-validation-for="@Model.NewTutor.FechaNacimientoT" class="text-danger"> </span>
                 </div>
-                
+
                 <div class="form-group row">
                     <label asp-for="NewTutor.Cuenta.CorreoElectronico" class="col-md-2"></label>
                     <input type="text" role="textbox" asp-for="@Model.Cuenta.CorreoElectronico" class="form-control col-md-9" />
+                    <div class="col-md-2"></div>
+                    <span asp-validation-for="@Model.Cuenta.CorreoElectronico" class="text-danger"> </span>
                 </div>
                 <div class="form-group row">
                     <label asp-for="Cuenta.Contrasenia" class="col-md-2"></label>
                     <input type="password" role="textbox" asp-for="@Model.Cuenta.Contrasenia" class="form-control col-md-3" />
                 </div>
                 <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <span asp-validation-for="@Model.Cuenta.Contrasenia" class="text-danger"> </span>
+                </div>                
+                <div class="form-group row">
                     <div class="col-md-10"></div>
-                    
+
                     <button class="btn btn-success m-1" type="submit">Registrarse</button>
                 </div>
             </blockquote>

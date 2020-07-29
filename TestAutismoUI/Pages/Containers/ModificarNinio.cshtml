@@ -6,58 +6,88 @@
 <h1 class="text-center">Modificar Datos del Niño</h1>
 
 
-<form class="mt-3" method="post">
-    
-        <div class="card mb-3" style="max-width: 1080px;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="~/Fotografias/nofoto.jpg" class="card-img" alt="..." asp-append-version="true" style="width:350px;height:400px">
+<form class="mt-3" method="post" enctype="multipart/form-data">
+
+    <div class="card mb-3" style="max-width: 1080px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="~/Fotografias/nofoto.jpg" class="card-img" alt="..." asp-append-version="true" style="width:350px;height:400px">
+                <input hidden asp-for="Ninio.Fotografia" />
+                <div class="col-sm-10">
+                    <div class=" custom-file">
+                        <input type="file" asp-for="Logo" class="custom-file-input form-control" lang="es">
+                        <label class="custom-file-label" for="Logo">Choose file</label>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <input hidden asp-for="@Model.Ninio.Id"/>
-                        <input hidden asp-for="@Model.Centro.Id"/>
-                        <input hidden asp-for="@Model.Ninio.CentroEducativoId" />
-                        <input hidden asp-for="@Model.Ninio.TutorId" />
-                        <div class="form-group row">
-                            <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Ninio.ApellidosNinio" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.ApellidosNinio" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Ninio.Nacionalidad" class="col-md-3"></label>
-                            <select asp-for="Ninio.Nacionalidad" class="form-control col-md-8" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Ninio.CurpNinio" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Ninio.CurpNinio" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Ninio.FechaNacimientoN" class="col-md-3"></label>
-                            <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Centro.NombreCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Centro.NombreCentro" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Centro.DireccionCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Centro.DireccionCentro" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Centro.ClaveCentro" class="col-md-3"></label>
-                            <input type="text" role="textbox" asp-for="@Model.Centro.ClaveCentro" class="form-control col-md-8" />
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-10"></div>
-                            <button class="btn btn-primary m-1" type="submit">Actualizar</button>
-                        </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <input hidden asp-for="@Model.Ninio.Id" />
+                    <input hidden asp-for="@Model.Centro.Id" />
+                    <input hidden asp-for="@Model.Ninio.CentroEducativoId" />
+                    <input hidden asp-for="@Model.Ninio.TutorId" />
+                    <div class="form-group row">
+                        <label asp-for="Ninio.NombreNinio" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Ninio.NombreNinio" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Ninio.NombreNinio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Ninio.ApellidosNinio" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Ninio.ApellidosNinio" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Ninio.ApellidosNinio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Ninio.Nacionalidad" class="col-md-3"></label>
+                        <select asp-for="Ninio.Nacionalidad" class="form-control col-md-8" asp-items="Html.GetEnumSelectList<Nacionalidad>()"></select>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Ninio.CurpNinio" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Ninio.CurpNinio" class="form-control col-md-8" />
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Ninio.FechaNacimientoN" class="col-md-3"></label>
+                        <input type="date" asp-for="@Model.Ninio.FechaNacimientoN" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Ninio.FechaNacimientoN" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Centro.NombreCentro" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Centro.NombreCentro" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Centro.NombreCentro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Centro.DireccionCentro" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Centro.DireccionCentro" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Centro.DireccionCentro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Centro.ClaveCentro" class="col-md-3"></label>
+                        <input type="text" role="textbox" asp-for="@Model.Centro.ClaveCentro" class="form-control col-md-8" />
+                        <div class="col-md-3"></div>
+                        <span asp-validation-for="@Model.Centro.ClaveCentro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-10"></div>
+                        <button class="btn btn-primary m-1" type="submit">Actualizar</button>
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+
 </form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                });
+        });
+    </script>
+}
