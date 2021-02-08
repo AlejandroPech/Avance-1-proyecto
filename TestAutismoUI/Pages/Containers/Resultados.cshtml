@@ -8,11 +8,11 @@
 
 <form method="post">
     <button type="submit" class="btn btn-danger float-right" value="Export To PDF"> Exportar PDF</button>
-
+    
     <input hidden asp-for="Ninio.TutorId" />
     <input hidden asp-for="Ninio.Id" />
 </form>
-
+<button class="btn btn-primary" onclick="generatedPdfFile()"></button>
 <br />
 <br />
 <table class="table" style="max-width:10160px">
@@ -65,22 +65,29 @@
     <div id="dynamicTable" class="table-responsive table-responsive-md"></div>
 </div>
 @section Scripts{
-    <script src="~/lib/pdfmake/pdfmake.min.js"></script>
-    <script src="~/lib/pdfmake/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
-        })         
+        })
+
+        
+
         function GetRespuestas() {
+            var arr=[]
             $.ajax({
-                url: "?id=" +@Model.Ninio.Id+"&handler=AsyncGetRespuestas",
+                url: "?id=" +1+"&handler=AsyncGetRespuestas",
                 method: "GET"
             }).done(function (data) {
                 //alert("Felicidades se ha ejecutado sin error")
-                CreateTable(data);
+                //CreateTable(data);
+                arr = [['First', 'Second', 'Third', 'The last one'], ['Value 1', 'Value 2', 'Value 3', 'Value 4'], [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4']];
+
             }).fail(function (jqXHR, textStatus, error) {
                 alert("lo sentimos ha habido un error");
             });
+            return arr
         }
 
         function CreateTable(data) {
@@ -89,7 +96,7 @@
                 colums.push(key)
             });
 
-
+            
             var Table = document.createElement("table");
             Table.className = "table table-striped table-info"
 
@@ -124,21 +131,37 @@
             Respuesta.append(Table)
         }
 
-        function GeneratePDF() {            
+        function Holas() {
+            var arr = [['First', 'Second', 'Third', 'The last one'], ['Value 1', 'Value 2', 'Value 3', 'Value 4'], [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4']];
+            return arr
+        }
+
+        function generatedPdfFile() {
+            var hola = GetRespuestas();
+            var hola2 = hola.arr;
             var win = window.open('', '_blank');
-            var docDefinition = { content: "This is an sample PDF printed with pdfMake" };
+            var docDefinition = {
+                content: [
+                    {
+
+                        
+                        table: {
+                            // headers are automatically repeated if the table spans over multiple pages
+                            // you can declare how many rows should be treated as headers
+                            
+
+                            body: [
+                                hola.map(function (item) {
+                                    return item
+                                })
+                            ]
+                        }
+                    }
+                ]
+            };
+
 
             pdfMake.createPdf(docDefinition).open({}, win);
         }
     </script>
-
 }
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace TestAutismoUI.Pages.Containers
         [BindProperty]
         public CentroEducativo Centro { get;set; }
         public int NewNinio { get; set; }
-
+        
         public IFormFile Logo { get; set; }        
         public IWebHostEnvironment HostEnviroment { get; }
         public RegistroNinioModel(IRepository<Ninio> niniorepository, IRepository<CentroEducativo> centrorepository, IWebHostEnvironment hostEnviroment)
@@ -38,21 +39,20 @@ namespace TestAutismoUI.Pages.Containers
             Ninio.FechaNacimientoN = DateTime.Now;
         }
         public IActionResult OnPost()
-        {
+        {            
             if (!ModelState.IsValid)
                 return Page();
             if (Logo != null)
             {
                 if (!string.IsNullOrEmpty(Ninio.Fotografia))
                 {
-                    var filePath = Path.Combine(HostEnviroment.WebRootPath, "images", Ninio.Fotografia); System.IO.File.Delete(filePath);
+                    var filePath = Path.Combine(HostEnviroment.WebRootPath, "images", Ninio.Fotografia); 
+                    System.IO.File.Delete(filePath);
 
                 }
-                Ninio.Fotografia = ProcessUploadFile();
-            }
+               Ninio.Fotografia = ProcessUploadFile();
+            }           
 
-
-           
             centrorepository.Insert(Centro);            
             Ninio.CentroEducativo = Centro;
             NewNinio = niniorepository.Insert(Ninio);
@@ -65,7 +65,8 @@ namespace TestAutismoUI.Pages.Containers
             if (Logo == null) 
                 return string.Empty;
 
-            var uploadFolder = Path.Combine(HostEnviroment.WebRootPath, "Fotografias"); var fileName = $"{Guid.NewGuid()}_{Logo.FileName}";
+            var uploadFolder = Path.Combine(HostEnviroment.WebRootPath, "Fotografias"); 
+            var fileName = $"{Guid.NewGuid()}_{Logo.FileName}";
             var filePath = Path.Combine(uploadFolder, fileName);
             using (var stream = new FileStream(filePath, FileMode.Create)) { Logo.CopyTo(stream); }
 

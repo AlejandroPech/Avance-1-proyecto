@@ -19,6 +19,7 @@ namespace TestAutismoUI.Pages.Containers
         public int Normales { get; set; }
         public int criticas { get; set; }
         public INiniosRepository repository;
+        
         public int resultado { get; set; }
         public IEnumerable<Respuesta> respuesta { get; set; }
         [BindProperty]
