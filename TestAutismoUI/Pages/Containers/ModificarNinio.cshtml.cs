@@ -42,7 +42,7 @@ namespace TestAutismoUI.Pages.Containers
             {
                 if (!string.IsNullOrEmpty(Ninio.Fotografia))
                 {
-                    var filePath = Path.Combine(HostEnviroment.WebRootPath, "images", Ninio.Fotografia); System.IO.File.Delete(filePath);
+                    var filePath = Path.Combine(HostEnviroment.WebRootPath, "Fotografias", Ninio.Fotografia); System.IO.File.Delete(filePath);
 
                 }
                 Ninio.Fotografia = ProcessUploadFile();
